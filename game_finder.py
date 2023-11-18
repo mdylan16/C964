@@ -5,15 +5,19 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 
-all_games = pd.read_csv('df1_games.csv')
+all_games = pd.read_csv('merged_data.csv',low_memory=False)
 
 game_titles = list(all_games['name'])
 
 all_games.dropna(inplace=True)
 
-all_games['genre/tags'] = all_games[['genre','tags']].agg(''.join,axis=1)
+all_games['Scores'] = all_games['All Reviews Number'].apply(lambda x: x.split(' ')[1])
 
-filtered_games = all_games[all_games['positive_rating'] >= 70].reset_index()
+all_games['genre/tags'] = all_games[['Popular Tags','Game Features']].agg(''.join,axis=1)
+
+filtered_games = all_games.reset_index()
+
+
 
 from sklearn.feature_extraction.text import CountVectorizer
 

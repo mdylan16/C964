@@ -4,5 +4,7 @@ ipywidgets
 seaborn
 matplotlib
 IPython
-warnings
+
 voila
+scikit-learn
+re
